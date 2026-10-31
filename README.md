@@ -92,8 +92,7 @@ The half-life is only compared with the RP, and the RP value is used. The aliase
 
 ## Patient data
 
-The RP, RD and RS contain patient identifiers. In the output, the names and IDs are removed and the dates replaced, but the anonymised RS keeps the contours. Generated projects should not be shared without checking them, and `.gitignore` keeps them out of this repository.
-
+The RP, RD and RS contain patient identifiers. In the output, the names and IDs are removed and the dates replaced, but the anonymised RS keeps the contours.
 ## References
 
 Beaulieu L, Carlsson Tedgren Å, Carrier JF, et al. Report of the Task Group 186 on model-based dose calculation methods in brachytherapy beyond the TG-43 formalism. Med Phys. 2012;39(10):6208-36. https://doi.org/10.1118/1.4747264
