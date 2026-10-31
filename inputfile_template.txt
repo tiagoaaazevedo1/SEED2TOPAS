@@ -1,0 +1,9 @@
+case01
+/path/to/RS.dcm
+/path/to/RD.dcm
+/path/to/RP.dcm
+I25.S17plus.txt
+both
+1e9
+8
+/path/to/output

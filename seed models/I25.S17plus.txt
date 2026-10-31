@@ -1,0 +1,76 @@
+# SEED2TOPAS seed model: one seed at the origin, axis along z, in plain TOPAS parameters.
+# Validated with OpenTOPAS against the TG-43 data of Pantelis et al. 2013.
+#
+# name = IsoSeed I25.S17plus (Eckert & Ziegler BEBIG)
+# isotope = I-125
+# half_life_d = 59.4
+# aliases = s17plus, s17 plus
+# sk_per_hist_Gy_cm2 = 4.026877781151031e-14
+# lambda_wafac = 0.9162
+# status = validated
+# references = Pantelis et al. 2013, J Contemp Brachytherapy 5:240; Rivard et al. 2017, Med Phys 44:e297, appendix A2
+
+# ---- materials
+b:Ma/Air40/BuildFromMaterials = "True"
+sv:Ma/Air40/Components = 5 "G4_H" "G4_C" "G4_N" "G4_O" "G4_Ar"
+uv:Ma/Air40/Fractions = 5 0.000732 0.000123 0.750325 0.236077 0.012743
+d:Ma/Air40/Density = 0.001196 g/cm3
+
+b:Ma/Titanium/BuildFromMaterials = "True"
+sv:Ma/Titanium/Components = 6 "G4_H" "G4_C" "G4_N" "G4_O" "G4_Fe" "G4_Ti"
+uv:Ma/Titanium/Fractions = 6 0.00015 0.001 0.0003 0.0025 0.002 0.99405
+d:Ma/Titanium/Density = 4.512 g/cm3
+
+b:Ma/Coating/BuildFromMaterials = "True"
+sv:Ma/Coating/Components = 1 "G4_SILVER_IODIDE"
+uv:Ma/Coating/Fractions = 1 1
+d:Ma/Coating/Density = 5.675 g/cm3
+
+# ---- geometry and source
+s:Ge/Seed/Type = "Group"
+s:Ge/Seed/Parent = "World"
+s:Ge/Encapsulation/Type = "TsCylinder"
+s:Ge/Encapsulation/Parent = "Seed"
+s:Ge/Encapsulation/Material = "Titanium"
+d:Ge/Encapsulation/RMax = 0.4 mm
+d:Ge/Encapsulation/HL = 1.85 mm
+s:Ge/Hollow/Type = "TsCylinder"
+s:Ge/Hollow/Parent = "Encapsulation"
+s:Ge/Hollow/Material = "Air40"
+d:Ge/Hollow/RMax = 0.345 mm
+d:Ge/Hollow/HL = 1.85 mm
+s:Ge/AgIcoating/Type = "TsCylinder"
+s:Ge/AgIcoating/Parent = "Hollow"
+s:Ge/AgIcoating/Material = "Coating"
+d:Ge/AgIcoating/RMax = 0.256 mm
+d:Ge/AgIcoating/HL = 1.701 mm
+s:Ge/Silverrod/Type = "TsCylinder"
+s:Ge/Silverrod/Parent = "AgIcoating"
+s:Ge/Silverrod/Material = "G4_Ag"
+d:Ge/Silverrod/RMax = 0.255 mm
+d:Ge/Silverrod/HL = 1.7 mm
+s:Ge/CapP/Type = "TsSphere"
+s:Ge/CapP/Parent = "Seed"
+s:Ge/CapP/Material = "Titanium"
+d:Ge/CapP/TransZ = 1.85 mm
+d:Ge/CapP/RMax = 0.4 mm
+d:Ge/CapP/STheta = 0 deg
+d:Ge/CapP/DTheta = 90 deg
+s:Ge/CapN/Type = "TsSphere"
+s:Ge/CapN/Parent = "Seed"
+s:Ge/CapN/Material = "Titanium"
+d:Ge/CapN/TransZ = -1.85 mm
+d:Ge/CapN/RMax = 0.4 mm
+d:Ge/CapN/STheta = 0 deg
+d:Ge/CapN/DTheta = 90 deg
+d:Ge/CapN/RotX = 180 deg
+s:So/Seed/Type = "Volumetric"
+s:So/Seed/Component = "AgIcoating"
+sc:So/Seed/ActiveMaterial = "Coating"
+b:So/Seed/RecursivelyIncludeChildren = "False"
+ic:So/Seed/MaxNumberOfPointsToSample = 10000000
+s:So/Seed/BeamParticle = "gamma"
+s:So/Seed/BeamEnergySpectrumType = "discrete"
+dv:So/Seed/BeamEnergySpectrumValues = 5 27.202 27.472 30.98 31.71 35.492 keV
+uv:So/Seed/BeamEnergySpectrumWeights = 5 0.27512 0.51298 0.13688 0.02975 0.04527
+ic:So/Seed/NumberOfHistoriesInRun = 1000000
